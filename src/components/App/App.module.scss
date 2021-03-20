@@ -1,0 +1,33 @@
+.component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 1200px;
+  min-height: 100vh;
+  padding: 30px 0;
+  margin: 0 auto;
+  background-color: #fffaec;
+}
+
+.title {
+  color: #696969;
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #228b22;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  margin: 0;
+  font-size: 16px;
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #008000;
+  }
+}

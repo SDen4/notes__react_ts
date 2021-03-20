@@ -10,9 +10,17 @@ const Note: React.FC<IProps> = (props) => {
   const { num } = props;
 
   return (
-    <>
-      <h2 className={styles.noteTitle}>Note {num} </h2>
-    </>
+    <div className={styles.component}>
+      <div className={styles.noteTop}>
+        <h2 className={styles.noteTitle}>Заметка {num} </h2>
+        <div className={styles.buttonWrapper}>
+          <button className={styles.button}>Изменить</button>
+          <button className={`${styles.button} ${styles.button_del}`}>
+            Удалить
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
