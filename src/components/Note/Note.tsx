@@ -4,16 +4,16 @@ import TaskList from '../TaskList/TaskList';
 import styles from './Note.module.scss';
 
 interface IProps {
-  num: number;
+  note: string;
 }
 
 const Note: React.FC<IProps> = (props) => {
-  const { num } = props;
+  const { note } = props;
 
   return (
     <div className={styles.component}>
       <div className={styles.noteTop}>
-        <h2 className={styles.noteTitle}>Заметка {num} </h2>
+        <h2 className={styles.noteTitle}>Заметка {note} </h2>
         <div className={styles.buttonWrapper}>
           <button className={styles.button}>Изменить</button>
           <button className={`${styles.button} ${styles.button_del}`}>

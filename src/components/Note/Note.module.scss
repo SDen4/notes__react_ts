@@ -4,12 +4,16 @@
   align-items: flex-start;
   justify-content: flex-start;
   padding: 10px 20px;
-  width: 100%;
+  margin-bottom: 20px;
+  width: 90%;
   border: 1px solid transparent;
   border-radius: 5px;
-  margin-bottom: 20px;
   background-color: #ffffff;
   transition: 0.3s;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 
   &:last-child {
     margin-bottom: 0;

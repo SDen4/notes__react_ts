@@ -1,0 +1,93 @@
+.component {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 60%;
+  padding: 30px 30px 40px;
+  border: 1px solid #696969;
+  border-radius: 5px;
+
+  & h2 {
+    color: #696969;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.form {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  & input {
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    height: 26px;
+    width: 60%;
+    padding: 0 5px;
+    margin-right: 10px;
+    font-size: 14px;
+    transition: 0.3s;
+
+    &:hover {
+      border: 1px solid #cd853f;
+    }
+  }
+}
+
+.button {
+  padding: 5px 10px;
+  background-color: #228b22;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  margin: 0;
+  font-size: 14px;
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #008000;
+  }
+}
+
+.button_del {
+  background-color: #ff4500;
+
+  &:hover {
+    background-color: #ff6347;
+  }
+}
+
+.button_cancel {
+  background-color: #d2691e;
+
+  &:hover {
+    background-color: #cd853f;
+  }
+}
+
+.button_wrapper {
+  margin-top: 30px;
+
+  & button {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
