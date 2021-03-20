@@ -1,0 +1,25 @@
+.component {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 3px 10px 3px 0;
+  background-color: #ffffff;
+  margin-bottom: 3px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:first-child {
+    margin-top: 10px;
+  }
+
+  & input {
+    margin: 0 10px 0 0;
+  }
+
+  & h3 {
+    color: #696969;
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import TaskList from '../TaskList/TaskList';
 
 import styles from './Note.module.scss';
 
@@ -20,6 +21,7 @@ const Note: React.FC<IProps> = (props) => {
           </button>
         </div>
       </div>
+      <TaskList />
     </div>
   );
 };
