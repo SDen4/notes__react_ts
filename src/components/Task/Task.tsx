@@ -4,11 +4,12 @@ import styles from './Task.module.scss';
 
 interface IProps {
   taskName: string;
+  taskId: string;
 }
 
-const Task: React.FC<IProps> = ({ taskName }) => {
+const Task: React.FC<IProps> = ({ taskName, taskId }) => {
   const deleteTaskHandler = () => {
-    console.log('task');
+    console.log('task Id', taskId);
   };
 
   return (

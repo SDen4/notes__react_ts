@@ -28,20 +28,26 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
   const noteTaskHandler = (event: any) => {
     let value = event.target.value;
     setNoteTask(value);
-    console.log(noteTask);
+    // console.log(noteTask);
   };
 
   // Добавление новой задачи
   const submitTaskHandler = (event: any) => {
     event.preventDefault();
-    console.log(noteTask);
+    // console.log(noteTask);
+
+    // Объект новой задачи с id
+    let noteTaskObj = { taskName: '', id: '' };
+
+    noteTaskObj.taskName = noteTask;
+    noteTaskObj.id = noteTask + Date.now().toString();
 
     // Добавить новую задачу в массив задач
-    setTasks([...tasks, noteTask]);
+    setTasks([...tasks, noteTaskObj]);
 
     // Очистить инпут после добавления
     setNoteTask('');
-    console.log('tasks', tasks);
+    // console.log('tasks', tasks);
   };
 
   // Submit всей формы добавления новой заметки и всех задач
@@ -72,10 +78,12 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
         </div>
 
         {/* Добавление новых задач при создании заметки */}
-        {tasks.map((item: string) => {
-          console.log(item);
+        {tasks.map((item: any) => {
+          const { taskName, id } = item;
+
+          // console.log(item);
           console.log(tasks);
-          return <Task taskName={item} key={item + Date.now().toString()} />;
+          return <Task taskName={taskName} taskId={id} key={id} />;
         })}
 
         <div className={styles.row}>
