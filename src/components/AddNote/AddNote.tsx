@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createNote } from '../../redux/actions';
 
+import Task from '../Task/Task';
+
 import styles from './AddNote.module.scss';
 
 interface IProps {
@@ -39,6 +41,7 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
 
     // Очистить инпут после добавления
     setNoteTask('');
+    console.log('tasks', tasks);
   };
 
   // Submit всей формы добавления новой заметки и всех задач
@@ -67,6 +70,13 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
             placeholder="Введите название заметки"
           />
         </div>
+
+        {/* Добавление новых задач при создании заметки */}
+        {tasks.map((item: string) => {
+          console.log(item);
+          console.log(tasks);
+          return <Task taskName={item} key={item + Date.now().toString()} />;
+        })}
 
         <div className={styles.row}>
           <input

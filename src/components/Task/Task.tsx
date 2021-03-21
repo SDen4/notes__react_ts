@@ -2,11 +2,28 @@ import React from 'react';
 
 import styles from './Task.module.scss';
 
-const Task: React.FC = () => {
+interface IProps {
+  taskName: string;
+}
+
+const Task: React.FC<IProps> = ({ taskName }) => {
+  const deleteTaskHandler = () => {
+    console.log('task');
+  };
+
   return (
     <div className={styles.component}>
-      <input type="checkbox" />
-      <h3>Задача 101</h3>
+      <div className={styles.title_wrapper}>
+        <input type="checkbox" />
+        <h3>{taskName}</h3>
+      </div>
+      <button
+        type="button"
+        className={`${styles.button} ${styles.button_del}`}
+        onClick={deleteTaskHandler}
+      >
+        Удалить
+      </button>
     </div>
   );
 };
