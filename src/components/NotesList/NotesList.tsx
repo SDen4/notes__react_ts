@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Note from '../Note/Note';
 
@@ -8,8 +9,8 @@ interface IProps {
   notes: any;
 }
 
-const NotesList: React.FC<IProps> = (props) => {
-  const { notes } = props;
+const NotesList: React.FC<IProps> = ({ notes }) => {
+  console.log('notes: ', notes);
 
   if (!notes.length) {
     return (
@@ -19,13 +20,14 @@ const NotesList: React.FC<IProps> = (props) => {
     );
   }
 
-  return notes.map((note: string) => <Note note={note} key={note} />);
-  // return (
-  //   <div className={styles.component}>
-  //     <Note num={1} />
-  //     <Note num={2} />
-  //   </div>
-  // );
+  return notes.map((note: any) => <Note note={note.noteTitle} key={note.id} />);
 };
 
-export default NotesList;
+const mapStateToPtops = (state: any) => {
+  console.log(state);
+  return {
+    notes: state.notes.notes,
+  };
+};
+
+export default connect(mapStateToPtops, null)(NotesList);

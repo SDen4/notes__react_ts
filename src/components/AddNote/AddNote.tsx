@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { createNote } from '../../redux/actions';
 
 import styles from './AddNote.module.scss';
 
-const AddNote: React.FC = () => {
+interface IProps {
+  createNote: any;
+}
+
+const AddNote: React.FC<IProps> = ({ createNote }) => {
   // Название заметки
   const [noteTitle, setТoteTitle] = useState('');
   // Новая задача
@@ -45,6 +51,7 @@ const AddNote: React.FC = () => {
       tasks,
     };
     console.log(newNote);
+    createNote(newNote);
   };
 
   return (
@@ -101,4 +108,8 @@ const AddNote: React.FC = () => {
   );
 };
 
-export default AddNote;
+const mapDispatchToProps = {
+  createNote,
+};
+
+export default connect(null, mapDispatchToProps)(AddNote);
