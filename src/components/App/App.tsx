@@ -1,6 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { newNote } from '../../redux/actions';
+
+import { DEL_NOTE } from '../../redux/types';
 
 import AddNote from '../AddNote/AddNote';
 import NotesList from '../NotesList/NotesList';
@@ -14,9 +16,19 @@ interface IProps {
 
 const App: React.FC<IProps> = ({ save, newNote }) => {
   const addNoteFlag = save;
+  const dispatch = useDispatch();
 
   const addNoteHandler = () => {
     newNote();
+  };
+
+  const removeNoteHandler = (id: string) => {
+    console.log('id in App', id);
+    dispatch({
+      type: DEL_NOTE,
+      payload: id,
+    });
+    // return null;
   };
 
   return (
@@ -25,7 +37,7 @@ const App: React.FC<IProps> = ({ save, newNote }) => {
 
       {!addNoteFlag && (
         <>
-          <NotesList notes={[]} />
+          <NotesList notes={[]} onRemove={removeNoteHandler} />
           <button className={styles.button} onClick={addNoteHandler}>
             Создать заметку
           </button>
@@ -46,6 +58,7 @@ const mapStateToPtops = (state: any) => {
 
 const mapDispatchToProps = {
   newNote,
+  // delNote
 };
 
 export default connect(mapStateToPtops, mapDispatchToProps)(App);

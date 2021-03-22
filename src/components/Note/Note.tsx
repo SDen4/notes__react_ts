@@ -6,10 +6,16 @@ import styles from './Note.module.scss';
 interface IProps {
   noteTitle: string;
   noteTasks: any;
+  noteId: string;
+  onRemove: (id: string) => void;
 }
 
 const Note: React.FC<IProps> = (props) => {
-  const { noteTitle, noteTasks } = props;
+  const { noteTitle, noteTasks, noteId, onRemove } = props;
+
+  // const delNoteHandler = (id: string) => {
+  //   onRemove(id);
+  // };
 
   return (
     <div className={styles.component}>
@@ -17,7 +23,10 @@ const Note: React.FC<IProps> = (props) => {
         <h2 className={styles.noteTitle}>{noteTitle} </h2>
         <div className={styles.buttonWrapper}>
           <button className={styles.button}>Изменить</button>
-          <button className={`${styles.button} ${styles.button_del}`}>
+          <button
+            className={`${styles.button} ${styles.button_del}`}
+            onClick={() => onRemove(noteId)}
+          >
             Удалить
           </button>
         </div>

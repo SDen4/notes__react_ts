@@ -1,4 +1,4 @@
-import { CREATE_NOTE, NEW_NOTE } from './types';
+import { CREATE_NOTE, NEW_NOTE, DEL_NOTE } from './types';
 
 const initialState: any = {
   notes: [],
@@ -17,6 +17,11 @@ export const notesReducer = (state = initialState, action: any) => {
       return {
         ...state,
         save: true,
+      };
+    case DEL_NOTE:
+      return {
+        ...state,
+        notes: state.notes.filter((note: any) => note.id !== action.payload),
       };
     default:
       return state;

@@ -47,7 +47,8 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
     noteTaskObj.checked = false;
 
     // Добавить новую задачу в массив задач
-    setTasks([...tasks, noteTaskObj]);
+    // setTasks([...tasks, noteTaskObj]);
+    setTasks((prev: any) => [...prev, noteTaskObj]);
 
     // Очистить инпут после добавления
     setNoteTask('');
