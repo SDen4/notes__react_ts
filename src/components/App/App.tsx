@@ -13,16 +13,9 @@ interface IProps {
 }
 
 const App: React.FC<IProps> = ({ save, newNote }) => {
-  // Флаг формы добавления новой заметки
-
   const addNoteFlag = save;
 
-  console.log('addNoteFlag:', addNoteFlag);
-
-  // const [addNoteFlag, setAddNoteFlag] = useState(false);
-
   const addNoteHandler = () => {
-    // setAddNoteFlag(!addNoteFlag);
     newNote();
   };
 

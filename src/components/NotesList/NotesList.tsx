@@ -20,11 +20,13 @@ const NotesList: React.FC<IProps> = ({ notes }) => {
     );
   }
 
-  return notes.map((note: any) => <Note note={note.noteTitle} key={note.id} />);
+  return notes.map((note: any) => (
+    <Note noteTitle={note.noteTitle} noteTasks={note.tasks} key={note.id} />
+  ));
 };
 
 const mapStateToPtops = (state: any) => {
-  console.log('state', state);
+  // console.log('state', state);
   return {
     notes: state.notes.notes,
   };

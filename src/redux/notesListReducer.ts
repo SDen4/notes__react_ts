@@ -2,7 +2,7 @@ import { CREATE_NOTE, NEW_NOTE } from './types';
 
 const initialState: any = {
   notes: [],
-  save: true,
+  save: false,
 };
 
 export const notesReducer = (state = initialState, action: any) => {

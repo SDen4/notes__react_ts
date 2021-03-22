@@ -67,7 +67,7 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
     // Защита от создания пустой заметки
     if (!newNote.noteTitle.trim()) return null;
 
-    console.log(newNote);
+    // console.log(newNote);
     createNote(newNote);
   };
 
@@ -90,7 +90,7 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
           const { taskName, id } = item;
 
           // console.log(item);
-          console.log(tasks);
+          // console.log(tasks);
           return <Task taskName={taskName} taskId={id} key={id} />;
         })}
 
