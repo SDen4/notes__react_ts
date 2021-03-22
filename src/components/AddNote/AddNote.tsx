@@ -127,7 +127,7 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
             type="reset"
             className={`${styles.button} ${styles.button_cancel}`}
           >
-            Отменить
+            Отмена
           </button>
         </div>
       </form>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { newNote } from '../../redux/actions';
 
@@ -6,6 +6,7 @@ import { DEL_NOTE } from '../../redux/types';
 
 import AddNote from '../AddNote/AddNote';
 import NotesList from '../NotesList/NotesList';
+import DelNoteModal from '../DelNoteModal/DelNoteModal';
 
 import styles from './App.module.scss';
 
@@ -17,6 +18,7 @@ interface IProps {
 const App: React.FC<IProps> = ({ save, newNote }) => {
   const addNoteFlag = save;
   const dispatch = useDispatch();
+  const [modalDelNote, setModalDelNote] = useState(false);
 
   const addNoteHandler = () => {
     newNote();
@@ -28,7 +30,6 @@ const App: React.FC<IProps> = ({ save, newNote }) => {
       type: DEL_NOTE,
       payload: id,
     });
-    // return null;
   };
 
   return (
@@ -45,6 +46,7 @@ const App: React.FC<IProps> = ({ save, newNote }) => {
       )}
 
       {addNoteFlag && <AddNote />}
+      {modalDelNote && <DelNoteModal />}
     </div>
   );
 };
@@ -58,7 +60,6 @@ const mapStateToPtops = (state: any) => {
 
 const mapDispatchToProps = {
   newNote,
-  // delNote
 };
 
 export default connect(mapStateToPtops, mapDispatchToProps)(App);
