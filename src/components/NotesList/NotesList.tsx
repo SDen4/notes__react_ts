@@ -24,7 +24,7 @@ const NotesList: React.FC<IProps> = ({ notes }) => {
 };
 
 const mapStateToPtops = (state: any) => {
-  console.log(state);
+  console.log('state', state);
   return {
     notes: state.notes.notes,
   };

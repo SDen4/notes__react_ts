@@ -36,11 +36,15 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
     event.preventDefault();
     // console.log(noteTask);
 
+    // Защита от создания пустой задачи
+    if (!noteTask.trim()) return null;
+
     // Объект новой задачи с id
-    let noteTaskObj = { taskName: '', id: '' };
+    let noteTaskObj = { taskName: '', id: '', checked: false };
 
     noteTaskObj.taskName = noteTask;
-    noteTaskObj.id = noteTask + Date.now().toString();
+    noteTaskObj.id = 'task_' + Date.now().toString();
+    noteTaskObj.checked = false;
 
     // Добавить новую задачу в массив задач
     setTasks([...tasks, noteTaskObj]);
@@ -56,9 +60,13 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
 
     const newNote = {
       noteTitle,
-      id: Date.now().toString(),
+      id: 'note_' + Date.now().toString(),
       tasks,
     };
+
+    // Защита от создания пустой заметки
+    if (!newNote.noteTitle.trim()) return null;
+
     console.log(newNote);
     createNote(newNote);
   };

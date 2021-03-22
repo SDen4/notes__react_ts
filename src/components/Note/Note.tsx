@@ -13,7 +13,7 @@ const Note: React.FC<IProps> = (props) => {
   return (
     <div className={styles.component}>
       <div className={styles.noteTop}>
-        <h2 className={styles.noteTitle}>Заметка {note} </h2>
+        <h2 className={styles.noteTitle}>{note} </h2>
         <div className={styles.buttonWrapper}>
           <button className={styles.button}>Изменить</button>
           <button className={`${styles.button} ${styles.button_del}`}>
