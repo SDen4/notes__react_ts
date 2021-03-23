@@ -19,17 +19,35 @@ const App: React.FC<IProps> = ({ save, newNote }) => {
   const addNoteFlag = save;
   const dispatch = useDispatch();
   const [modalDelNote, setModalDelNote] = useState(false);
+  const [delId, setDelId] = useState('');
 
   const addNoteHandler = () => {
     newNote();
   };
 
+  // Запись id для удаления + вызов модалки
   const removeNoteHandler = (id: string) => {
-    console.log('id in App', id);
-    dispatch({
-      type: DEL_NOTE,
-      payload: id,
-    });
+    setDelId(id);
+    setModalDelNote(true);
+  };
+
+  // Кнопки в модалке
+  const onModal = (des: boolean) => {
+    console.log(des);
+
+    if (des === true) {
+      dispatch({
+        type: DEL_NOTE,
+        payload: delId,
+      });
+      setDelId('');
+      setModalDelNote(false);
+    }
+
+    if (des === false) {
+      setDelId('');
+      setModalDelNote(false);
+    }
   };
 
   return (
@@ -46,7 +64,7 @@ const App: React.FC<IProps> = ({ save, newNote }) => {
       )}
 
       {addNoteFlag && <AddNote />}
-      {modalDelNote && <DelNoteModal />}
+      {modalDelNote && <DelNoteModal onModal={onModal} />}
     </div>
   );
 };
