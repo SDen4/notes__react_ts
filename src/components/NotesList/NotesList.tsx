@@ -8,9 +8,10 @@ import styles from './NotesList.module.scss';
 interface IProps {
   notes: any;
   onRemove: (id: string) => void;
+  onEdit: (id: string, title: string, tasks: any) => void;
 }
 
-const NotesList: React.FC<IProps> = ({ notes, onRemove }) => {
+const NotesList: React.FC<IProps> = ({ notes, onRemove, onEdit }) => {
   console.log('notes: ', notes);
 
   if (!notes.length) {
@@ -28,12 +29,13 @@ const NotesList: React.FC<IProps> = ({ notes, onRemove }) => {
       noteId={note.id}
       key={note.id}
       onRemove={onRemove}
+      onEdit={onEdit}
     />
   ));
 };
 
 const mapStateToPtops = (state: any) => {
-  // console.log('state', state);
+  console.log('state in NoteList', state);
   return {
     notes: state.notes.notes,
   };

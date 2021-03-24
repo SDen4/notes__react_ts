@@ -8,21 +8,23 @@ interface IProps {
   noteTasks: any;
   noteId: string;
   onRemove: (id: string) => void;
+  onEdit: (id: string, title: string, tasks: any) => void;
 }
 
 const Note: React.FC<IProps> = (props) => {
-  const { noteTitle, noteTasks, noteId, onRemove } = props;
-
-  // const delNoteHandler = (id: string) => {
-  //   onRemove(id);
-  // };
+  const { noteTitle, noteTasks, noteId, onRemove, onEdit } = props;
 
   return (
     <div className={styles.component}>
       <div className={styles.noteTop}>
         <h2 className={styles.noteTitle}>{noteTitle} </h2>
         <div className={styles.buttonWrapper}>
-          <button className={styles.button}>Изменить</button>
+          <button
+            className={styles.button}
+            onClick={() => onEdit(noteId, noteTitle, noteTasks)}
+          >
+            Изменить
+          </button>
           <button
             className={`${styles.button} ${styles.button_del}`}
             onClick={() => onRemove(noteId)}

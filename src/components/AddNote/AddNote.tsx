@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { createNote } from '../../redux/actions';
+import { createNote, editNote } from '../../redux/actions';
+
+// import { EDIT_NOTE, DEL_NOTE } from '../../redux/types';
 
 import Task from '../Task/Task';
 
@@ -8,33 +10,44 @@ import styles from './AddNote.module.scss';
 
 interface IProps {
   createNote: any;
+  editNote: any;
+  editData?: { editId: string; editTitle: string; editTasks: any };
+  editClear: any;
 }
 
-const AddNote: React.FC<IProps> = ({ createNote }) => {
+const AddNote: React.FC<IProps> = ({
+  createNote,
+  editNote,
+  editData,
+  editClear,
+}) => {
   // Название заметки
-  const [noteTitle, setТoteTitle] = useState('');
+  const [noteTitle, setNoteTitle] = useState(
+    editData?.editTitle ? editData?.editTitle : '',
+  );
   // Новая задача
   const [noteTask, setNoteTask] = useState('');
+
   // Массив новых задач
-  const [tasks, setTasks] = useState([] as any);
+  const [tasks, setTasks] = useState(
+    editData?.editTasks ? editData?.editTasks : ([] as any),
+  );
 
   // Получаю значение из инпута названия новой заметки
   const noteTitleHandler = (event: any) => {
     let value = event.target.value;
-    setТoteTitle(value);
+    setNoteTitle(value);
   };
 
   // Получаю значение из инпута новой задачи
   const noteTaskHandler = (event: any) => {
     let value = event.target.value;
     setNoteTask(value);
-    // console.log(noteTask);
   };
 
   // Добавление новой задачи
   const submitTaskHandler = (event: any) => {
     event.preventDefault();
-    // console.log(noteTask);
 
     // Защита от создания пустой задачи
     if (!noteTask.trim()) return null;
@@ -47,12 +60,10 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
     noteTaskObj.checked = false;
 
     // Добавить новую задачу в массив задач
-    // setTasks([...tasks, noteTaskObj]);
     setTasks((prev: any) => [...prev, noteTaskObj]);
 
     // Очистить инпут после добавления
     setNoteTask('');
-    // console.log('tasks', tasks);
   };
 
   // Submit всей формы добавления новой заметки и всех задач
@@ -61,15 +72,24 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
 
     const newNote = {
       noteTitle,
-      id: 'note_' + Date.now().toString(),
+      id: editData?.editId ? editData?.editId : 'note_' + Date.now().toString(),
       tasks,
     };
 
     // Защита от создания пустой заметки
     if (!newNote.noteTitle.trim()) return null;
 
-    // console.log(newNote);
-    createNote(newNote);
+    if (editData?.editTitle) {
+      console.log('newNote', newNote);
+      editNote(newNote);
+
+      //Очистить editData
+      //
+      //
+      editClear();
+    } else {
+      createNote(newNote);
+    }
   };
 
   return (
@@ -80,18 +100,14 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
         <div className={styles.row}>
           <input
             type="text"
-            value={noteTitle}
+            defaultValue={noteTitle}
             onChange={noteTitleHandler}
             placeholder="Введите название заметки"
           />
         </div>
 
-        {/* Добавление новых задач при создании заметки */}
         {tasks.map((item: any) => {
           const { taskName, id } = item;
-
-          // console.log(item);
-          // console.log(tasks);
           return <Task taskName={taskName} taskId={id} key={id} />;
         })}
 
@@ -137,6 +153,7 @@ const AddNote: React.FC<IProps> = ({ createNote }) => {
 
 const mapDispatchToProps = {
   createNote,
+  editNote,
 };
 
 export default connect(null, mapDispatchToProps)(AddNote);

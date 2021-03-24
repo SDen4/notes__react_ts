@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { newNote } from '../../redux/actions';
+import { newNote, editNote } from '../../redux/actions';
 
 import { DEL_NOTE } from '../../redux/types';
 
@@ -13,13 +13,15 @@ import styles from './App.module.scss';
 interface IProps {
   save: boolean;
   newNote: any;
+  editNote: any;
 }
 
-const App: React.FC<IProps> = ({ save, newNote }) => {
+const App: React.FC<IProps> = ({ save, newNote, editNote }) => {
   const addNoteFlag = save;
   const dispatch = useDispatch();
   const [modalDelNote, setModalDelNote] = useState(false);
   const [delId, setDelId] = useState('');
+  const [editDataArr, setEditDataArr] = useState({} as any);
 
   const addNoteHandler = () => {
     newNote();
@@ -50,20 +52,38 @@ const App: React.FC<IProps> = ({ save, newNote }) => {
     }
   };
 
+  // Редактирование заметки
+  const editNoteHandler = (
+    editId: string,
+    editTitle: string,
+    editTasks: any,
+  ) => {
+    setEditDataArr({ editId, editTitle, editTasks });
+    newNote();
+  };
+
+  const editClear = () => {
+    setEditDataArr({});
+  };
+
   return (
     <div className={styles.component}>
       <h1 className={styles.title}>Заметки</h1>
 
       {!addNoteFlag && (
         <>
-          <NotesList notes={[]} onRemove={removeNoteHandler} />
+          <NotesList
+            notes={[]}
+            onRemove={removeNoteHandler}
+            onEdit={editNoteHandler}
+          />
           <button className={styles.button} onClick={addNoteHandler}>
             Создать заметку
           </button>
         </>
       )}
 
-      {addNoteFlag && <AddNote />}
+      {addNoteFlag && <AddNote editData={editDataArr} editClear={editClear} />}
       {modalDelNote && <DelNoteModal onModal={onModal} />}
     </div>
   );
@@ -78,6 +98,7 @@ const mapStateToPtops = (state: any) => {
 
 const mapDispatchToProps = {
   newNote,
+  editNote,
 };
 
 export default connect(mapStateToPtops, mapDispatchToProps)(App);
