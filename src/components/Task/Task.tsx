@@ -8,23 +8,23 @@ interface IProps {
 }
 
 const Task: React.FC<IProps> = ({ taskName, taskId }) => {
-  const deleteTaskHandler = () => {
-    console.log('task Id', taskId);
-  };
+  // const deleteTaskHandler = () => {
+  //   console.log('task Id', taskId);
+  // };
 
   return (
     <div className={styles.component}>
       <div className={styles.title_wrapper}>
         <input type="checkbox" />
-        <h3>{taskName}</h3>
+        <h4>{taskName}</h4>
       </div>
-      <button
+      {/* <button
         type="button"
         className={`${styles.button} ${styles.button_del}`}
         onClick={deleteTaskHandler}
       >
         Удалить
-      </button>
+      </button> */}
     </div>
   );
 };

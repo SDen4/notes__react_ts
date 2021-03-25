@@ -1,4 +1,10 @@
-import { CREATE_NOTE, NEW_NOTE, DEL_NOTE, EDIT_NOTE } from './types';
+import {
+  CREATE_NOTE,
+  NEW_NOTE,
+  DEL_NOTE,
+  EDIT_NOTE,
+  CANCEL_NOTE,
+} from './types';
 
 export function createNote(note: any) {
   return {
@@ -25,5 +31,11 @@ export function editNote(note: any) {
   return {
     type: EDIT_NOTE,
     payload: note,
+  };
+}
+
+export function cancelNote() {
+  return {
+    type: CANCEL_NOTE,
   };
 }

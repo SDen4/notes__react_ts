@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { newNote, editNote } from '../../redux/actions';
+import { newNote, editNote, cancelNote } from '../../redux/actions';
 
 import { DEL_NOTE } from '../../redux/types';
 
@@ -14,9 +14,10 @@ interface IProps {
   save: boolean;
   newNote: any;
   editNote: any;
+  cancelNote: any;
 }
 
-const App: React.FC<IProps> = ({ save, newNote, editNote }) => {
+const App: React.FC<IProps> = ({ save, newNote, editNote, cancelNote }) => {
   const addNoteFlag = save;
   const dispatch = useDispatch();
   const [modalDelNote, setModalDelNote] = useState(false);
@@ -83,7 +84,13 @@ const App: React.FC<IProps> = ({ save, newNote, editNote }) => {
         </>
       )}
 
-      {addNoteFlag && <AddNote editData={editDataArr} editClear={editClear} />}
+      {addNoteFlag && (
+        <AddNote
+          editData={editDataArr}
+          editClear={editClear}
+          cancelNote={cancelNote}
+        />
+      )}
       {modalDelNote && <DelNoteModal onModal={onModal} />}
     </div>
   );
@@ -99,6 +106,7 @@ const mapStateToPtops = (state: any) => {
 const mapDispatchToProps = {
   newNote,
   editNote,
+  cancelNote,
 };
 
 export default connect(mapStateToPtops, mapDispatchToProps)(App);

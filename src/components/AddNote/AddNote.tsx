@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createNote, editNote } from '../../redux/actions';
 
-// import { EDIT_NOTE, DEL_NOTE } from '../../redux/types';
-
 import Task from '../Task/Task';
 
 import styles from './AddNote.module.scss';
@@ -11,6 +9,7 @@ import styles from './AddNote.module.scss';
 interface IProps {
   createNote: any;
   editNote: any;
+  cancelNote: any;
   editData?: { editId: string; editTitle: string; editTasks: any };
   editClear: any;
 }
@@ -18,6 +17,7 @@ interface IProps {
 const AddNote: React.FC<IProps> = ({
   createNote,
   editNote,
+  cancelNote,
   editData,
   editClear,
 }) => {
@@ -84,12 +84,14 @@ const AddNote: React.FC<IProps> = ({
       editNote(newNote);
 
       //Очистить editData
-      //
-      //
       editClear();
     } else {
       createNote(newNote);
     }
+  };
+
+  const cancelSaveHandler = () => {
+    cancelNote();
   };
 
   return (
@@ -133,15 +135,9 @@ const AddNote: React.FC<IProps> = ({
           </button>
 
           <button
-            type="button"
-            className={`${styles.button} ${styles.button_del}`}
-          >
-            Удалить
-          </button>
-
-          <button
             type="reset"
             className={`${styles.button} ${styles.button_cancel}`}
+            onClick={cancelSaveHandler}
           >
             Отмена
           </button>

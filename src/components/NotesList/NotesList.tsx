@@ -22,16 +22,19 @@ const NotesList: React.FC<IProps> = ({ notes, onRemove, onEdit }) => {
     );
   }
 
-  return notes.map((note: any) => (
-    <Note
-      noteTitle={note.noteTitle}
-      noteTasks={note.tasks}
-      noteId={note.id}
-      key={note.id}
-      onRemove={onRemove}
-      onEdit={onEdit}
-    />
-  ));
+  return notes.map((note: any) => {
+    const { noteTitle, tasks, id } = note;
+    return (
+      <Note
+        key={id}
+        noteTitle={noteTitle}
+        noteTasks={tasks}
+        noteId={id}
+        onRemove={onRemove}
+        onEdit={onEdit}
+      />
+    );
+  });
 };
 
 const mapStateToPtops = (state: any) => {
