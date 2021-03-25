@@ -5,10 +5,10 @@ import styles from './Note.module.scss';
 
 interface IProps {
   noteTitle: string;
-  noteTasks: any;
+  noteTasks: any[];
   noteId: string;
   onRemove: (id: string) => void;
-  onEdit: (id: string, title: string, tasks: any) => void;
+  onEdit: (id: string, title: string, tasks: any[]) => void;
 }
 
 const Note: React.FC<IProps> = (props) => {

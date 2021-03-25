@@ -5,12 +5,13 @@ import styles from './Task.module.scss';
 interface IProps {
   taskName: string;
   taskId: string;
+  deleteTask?: any;
 }
 
-const Task: React.FC<IProps> = ({ taskName, taskId }) => {
-  // const deleteTaskHandler = () => {
-  //   console.log('task Id', taskId);
-  // };
+const Task: React.FC<IProps> = ({ taskName, taskId, deleteTask }) => {
+  const deleteTaskHandler = () => {
+    deleteTask(taskId);
+  };
 
   return (
     <div className={styles.component}>
@@ -18,13 +19,13 @@ const Task: React.FC<IProps> = ({ taskName, taskId }) => {
         <input type="checkbox" />
         <h4>{taskName}</h4>
       </div>
-      {/* <button
+      <button
         type="button"
         className={`${styles.button} ${styles.button_del}`}
         onClick={deleteTaskHandler}
       >
         Удалить
-      </button> */}
+      </button>
     </div>
   );
 };

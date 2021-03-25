@@ -21,7 +21,7 @@ const App: React.FC<IProps> = ({ save, newNote, editNote, cancelNote }) => {
   const addNoteFlag = save;
   const dispatch = useDispatch();
   const [modalDelNote, setModalDelNote] = useState(false);
-  const [delId, setDelId] = useState('');
+  const [delId, setDelId] = useState<string>('');
   const [editDataArr, setEditDataArr] = useState({} as any);
 
   const addNoteHandler = () => {

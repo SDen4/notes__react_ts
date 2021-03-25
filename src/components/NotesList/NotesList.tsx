@@ -8,7 +8,7 @@ import styles from './NotesList.module.scss';
 interface IProps {
   notes: any;
   onRemove: (id: string) => void;
-  onEdit: (id: string, title: string, tasks: any) => void;
+  onEdit: (id: string, title: string, tasks: any[]) => void;
 }
 
 const NotesList: React.FC<IProps> = ({ notes, onRemove, onEdit }) => {

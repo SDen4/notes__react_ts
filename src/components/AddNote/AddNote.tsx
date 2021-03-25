@@ -22,11 +22,11 @@ const AddNote: React.FC<IProps> = ({
   editClear,
 }) => {
   // Название заметки
-  const [noteTitle, setNoteTitle] = useState(
+  const [noteTitle, setNoteTitle] = useState<string>(
     editData?.editTitle ? editData?.editTitle : '',
   );
   // Новая задача
-  const [noteTask, setNoteTask] = useState('');
+  const [noteTask, setNoteTask] = useState<string>('');
 
   // Массив новых задач
   const [tasks, setTasks] = useState(
@@ -34,13 +34,13 @@ const AddNote: React.FC<IProps> = ({
   );
 
   // Получаю значение из инпута названия новой заметки
-  const noteTitleHandler = (event: any) => {
+  const noteTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     setNoteTitle(value);
   };
 
   // Получаю значение из инпута новой задачи
-  const noteTaskHandler = (event: any) => {
+  const noteTaskHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     setNoteTask(value);
   };
@@ -94,6 +94,12 @@ const AddNote: React.FC<IProps> = ({
     cancelNote();
   };
 
+  // Удаление задачи из списка
+  const deleteTask = (idDeleteTask: string) => {
+    const newTasksList = tasks.filter((task: any) => task.id !== idDeleteTask);
+    setTasks(newTasksList);
+  };
+
   return (
     <div className={styles.component}>
       <h2>Создание новой заметки</h2>
@@ -110,7 +116,14 @@ const AddNote: React.FC<IProps> = ({
 
         {tasks.map((item: any) => {
           const { taskName, id } = item;
-          return <Task taskName={taskName} taskId={id} key={id} />;
+          return (
+            <Task
+              taskName={taskName}
+              taskId={id}
+              key={id}
+              deleteTask={deleteTask}
+            />
+          );
         })}
 
         <div className={styles.row}>
