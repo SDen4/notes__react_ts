@@ -34,16 +34,14 @@ const App: React.FC<IProps> = ({ save, newNote, editNote, cancelNote }) => {
   };
 
   const onModal = (des: boolean) => {
-    if (des === true) {
+    if (des) {
       dispatch({
         type: DEL_NOTE,
         payload: delId,
       });
       setDelId('');
       setModalDelNote(false);
-    }
-
-    if (des === false) {
+    } else {
       setDelId('');
       setModalDelNote(false);
     }
@@ -52,7 +50,7 @@ const App: React.FC<IProps> = ({ save, newNote, editNote, cancelNote }) => {
   const editNoteHandler = (
     editId: string,
     editTitle: string,
-    editTasks: any,
+    editTasks: any[],
   ) => {
     setEditDataArr({ editId, editTitle, editTasks });
     newNote();

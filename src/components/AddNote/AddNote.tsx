@@ -77,6 +77,7 @@ const AddNote: React.FC<IProps> = ({
 
   const cancelSaveHandler = () => {
     cancelNote();
+    editClear();
   };
 
   const deleteTask = (idDeleteTask: string) => {
