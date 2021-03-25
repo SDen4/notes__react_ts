@@ -1,14 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import styles from './Task.module.scss';
 
 interface IProps {
+  save?: boolean | undefined;
   taskName: string;
   taskId: string;
   deleteTask?: any;
 }
 
-const Task: React.FC<IProps> = ({ taskName, taskId, deleteTask }) => {
+const Task: React.FC<IProps> = ({ save, taskName, taskId, deleteTask }) => {
+  const saveFlag = save;
+
+  console.log('saveFlag', saveFlag);
+
   const deleteTaskHandler = () => {
     deleteTask(taskId);
   };
@@ -19,15 +25,24 @@ const Task: React.FC<IProps> = ({ taskName, taskId, deleteTask }) => {
         <input type="checkbox" />
         <h4>{taskName}</h4>
       </div>
-      <button
-        type="button"
-        className={`${styles.button} ${styles.button_del}`}
-        onClick={deleteTaskHandler}
-      >
-        Удалить
-      </button>
+      {saveFlag && (
+        <button
+          type="button"
+          className={`${styles.button} ${styles.button_del}`}
+          onClick={deleteTaskHandler}
+        >
+          Удалить
+        </button>
+      )}
     </div>
   );
 };
 
-export default Task;
+const mapStateToPtops = (state: any) => {
+  console.log('state in Task', state);
+  return {
+    save: state.notes.save,
+  };
+};
+
+export default connect(mapStateToPtops, null)(Task);
