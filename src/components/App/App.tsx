@@ -28,16 +28,12 @@ const App: React.FC<IProps> = ({ save, newNote, editNote, cancelNote }) => {
     newNote();
   };
 
-  // Запись id для удаления + вызов модалки
   const removeNoteHandler = (id: string) => {
     setDelId(id);
     setModalDelNote(true);
   };
 
-  // Кнопки в модалке
   const onModal = (des: boolean) => {
-    console.log(des);
-
     if (des === true) {
       dispatch({
         type: DEL_NOTE,
@@ -53,7 +49,6 @@ const App: React.FC<IProps> = ({ save, newNote, editNote, cancelNote }) => {
     }
   };
 
-  // Редактирование заметки
   const editNoteHandler = (
     editId: string,
     editTitle: string,
@@ -97,7 +92,6 @@ const App: React.FC<IProps> = ({ save, newNote, editNote, cancelNote }) => {
 };
 
 const mapStateToPtops = (state: any) => {
-  console.log('state in App', state);
   return {
     save: state.notes.save,
   };

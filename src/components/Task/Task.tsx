@@ -12,9 +12,6 @@ interface IProps {
 
 const Task: React.FC<IProps> = ({ save, taskName, taskId, deleteTask }) => {
   const saveFlag = save;
-
-  console.log('saveFlag', saveFlag);
-
   const deleteTaskHandler = () => {
     deleteTask(taskId);
   };
@@ -39,7 +36,6 @@ const Task: React.FC<IProps> = ({ save, taskName, taskId, deleteTask }) => {
 };
 
 const mapStateToPtops = (state: any) => {
-  console.log('state in Task', state);
   return {
     save: state.notes.save,
   };

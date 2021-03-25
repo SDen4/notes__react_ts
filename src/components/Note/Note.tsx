@@ -34,7 +34,6 @@ const Note: React.FC<IProps> = (props) => {
         </div>
       </div>
       {noteTasks.map((item: any) => {
-        console.log(item);
         const { taskName, taskId } = item;
         return <Task taskName={taskName} taskId={taskId} key={taskId} />;
       })}

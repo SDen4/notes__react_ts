@@ -21,52 +21,41 @@ const AddNote: React.FC<IProps> = ({
   editData,
   editClear,
 }) => {
-  // Название заметки
   const [noteTitle, setNoteTitle] = useState<string>(
     editData?.editTitle ? editData?.editTitle : '',
   );
-  // Новая задача
+
   const [noteTask, setNoteTask] = useState<string>('');
 
-  // Массив новых задач
   const [tasks, setTasks] = useState(
     editData?.editTasks ? editData?.editTasks : ([] as any),
   );
 
-  // Получаю значение из инпута названия новой заметки
   const noteTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     setNoteTitle(value);
   };
 
-  // Получаю значение из инпута новой задачи
   const noteTaskHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     setNoteTask(value);
   };
 
-  // Добавление новой задачи
   const submitTaskHandler = (event: any) => {
     event.preventDefault();
 
-    // Защита от создания пустой задачи
     if (!noteTask.trim()) return null;
 
-    // Объект новой задачи с id
     let noteTaskObj = { taskName: '', id: '', checked: false };
 
     noteTaskObj.taskName = noteTask;
     noteTaskObj.id = 'task_' + Date.now().toString();
     noteTaskObj.checked = false;
 
-    // Добавить новую задачу в массив задач
     setTasks((prev: any) => [...prev, noteTaskObj]);
-
-    // Очистить инпут после добавления
     setNoteTask('');
   };
 
-  // Submit всей формы добавления новой заметки и всех задач
   const submitNoteHadler = (event: any) => {
     event.preventDefault();
 
@@ -76,14 +65,10 @@ const AddNote: React.FC<IProps> = ({
       tasks,
     };
 
-    // Защита от создания пустой заметки
     if (!newNote.noteTitle.trim()) return null;
 
     if (editData?.editTitle) {
-      console.log('newNote', newNote);
       editNote(newNote);
-
-      //Очистить editData
       editClear();
     } else {
       createNote(newNote);
@@ -94,7 +79,6 @@ const AddNote: React.FC<IProps> = ({
     cancelNote();
   };
 
-  // Удаление задачи из списка
   const deleteTask = (idDeleteTask: string) => {
     const newTasksList = tasks.filter((task: any) => task.id !== idDeleteTask);
     setTasks(newTasksList);

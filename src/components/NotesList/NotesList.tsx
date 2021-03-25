@@ -12,8 +12,6 @@ interface IProps {
 }
 
 const NotesList: React.FC<IProps> = ({ notes, onRemove, onEdit }) => {
-  console.log('notes: ', notes);
-
   if (!notes.length) {
     return (
       <div className={styles.noList}>
@@ -38,7 +36,6 @@ const NotesList: React.FC<IProps> = ({ notes, onRemove, onEdit }) => {
 };
 
 const mapStateToPtops = (state: any) => {
-  console.log('state in NoteList', state);
   return {
     notes: state.notes.notes,
   };
