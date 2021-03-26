@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './Task.module.scss';
@@ -8,28 +8,79 @@ interface IProps {
   taskName: string;
   taskId: string;
   deleteTask?: any;
+  editTask?: any;
 }
 
-const Task: React.FC<IProps> = ({ save, taskName, taskId, deleteTask }) => {
+const Task: React.FC<IProps> = ({
+  save,
+  taskName,
+  taskId,
+  deleteTask,
+  editTask,
+}) => {
   const saveFlag = save;
+  const [editTaskFlag, setEditTaskFlag] = useState(false);
+  const [newTask, setNewTask] = useState('');
   const deleteTaskHandler = () => {
     deleteTask(taskId);
+  };
+
+  const editTaskHandler = () => {
+    setEditTaskFlag(true);
+  };
+
+  const newTaskHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let value = event.target.value;
+    setNewTask(value);
+  };
+
+  const saveNewTaskHandler = () => {
+    if (!newTask.trim()) return null;
+    editTask(newTask, taskId);
   };
 
   return (
     <div className={styles.component}>
       <div className={styles.title_wrapper}>
-        <input type="checkbox" />
-        <h4>{taskName}</h4>
+        {/* <input type="checkbox" /> */}
+        {editTaskFlag ? (
+          <input
+            type="text"
+            defaultValue={taskName}
+            onChange={newTaskHandler}
+          />
+        ) : (
+          <h4>{taskName}</h4>
+        )}
       </div>
       {saveFlag && (
-        <button
-          type="button"
-          className={`${styles.button} ${styles.button_del}`}
-          onClick={deleteTaskHandler}
-        >
-          Удалить
-        </button>
+        <div className={styles.button__wrapper}>
+          <button
+            type="button"
+            className={`${styles.button} ${styles.button_del}`}
+            onClick={deleteTaskHandler}
+          >
+            Удалить
+          </button>
+
+          {editTaskFlag ? (
+            <button
+              type="button"
+              className={styles.button}
+              onClick={saveNewTaskHandler}
+            >
+              Сохранить
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={`${styles.button} ${styles.button_cancel}`}
+              onClick={editTaskHandler}
+            >
+              Редактировать
+            </button>
+          )}
+        </div>
       )}
     </div>
   );

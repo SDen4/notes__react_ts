@@ -85,11 +85,22 @@ const AddNote: React.FC<IProps> = ({
     setTasks(newTasksList);
   };
 
+  const editTask = (newTask: string, editTaskId: string) => {
+    console.log(newTask, editTaskId);
+    const newEditTask = { taskName: newTask, id: editTaskId, checked: false };
+    const newTasksList = tasks.map((task: any) =>
+      task.id === editTaskId ? newEditTask : task,
+    );
+    setTasks(newTasksList);
+    console.log(newTasksList);
+  };
+
   return (
     <div className={styles.component}>
       <h2>Создание новой заметки</h2>
 
       <form onSubmit={submitNoteHadler} className={styles.form}>
+        <div className={styles.subtitle}>Название заметки</div>
         <div className={styles.row}>
           <input
             type="text"
@@ -99,14 +110,16 @@ const AddNote: React.FC<IProps> = ({
           />
         </div>
 
+        <div className={styles.subtitle}>Задачи</div>
         {tasks.map((item: any) => {
           const { taskName, id } = item;
           return (
             <Task
               taskName={taskName}
               taskId={id}
-              key={id}
+              key={Math.random()}
               deleteTask={deleteTask}
+              editTask={editTask}
             />
           );
         })}

@@ -35,7 +35,7 @@ const Note: React.FC<IProps> = (props) => {
       </div>
       {noteTasks.map((item: any) => {
         const { taskName, taskId } = item;
-        return <Task taskName={taskName} taskId={taskId} key={taskId} />;
+        return <Task taskName={taskName} taskId={taskId} key={Math.random()} />;
       })}
     </div>
   );

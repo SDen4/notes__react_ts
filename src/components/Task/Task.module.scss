@@ -38,6 +38,16 @@
   padding-left: 20px;
 }
 
+.button__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & button:first-child {
+    margin-right: 20px;
+  }
+}
+
 .button {
   padding: 5px 10px;
   background-color: #228b22;
@@ -60,5 +70,13 @@
 
   &:hover {
     background-color: #ff6347;
+  }
+}
+
+.button_cancel {
+  background-color: #d2691e;
+
+  &:hover {
+    background-color: #cd853f;
   }
 }
