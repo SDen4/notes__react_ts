@@ -86,13 +86,11 @@ const AddNote: React.FC<IProps> = ({
   };
 
   const editTask = (newTask: string, editTaskId: string) => {
-    console.log(newTask, editTaskId);
     const newEditTask = { taskName: newTask, id: editTaskId, checked: false };
     const newTasksList = tasks.map((task: any) =>
       task.id === editTaskId ? newEditTask : task,
     );
     setTasks(newTasksList);
-    console.log(newTasksList);
   };
 
   return (

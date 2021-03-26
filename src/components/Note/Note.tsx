@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Task from '../Task/Task';
 
 import styles from './Note.module.scss';

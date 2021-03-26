@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { newNote, editNote, cancelNote } from '../../redux/actions';
-
 import { DEL_NOTE } from '../../redux/types';
 
 import AddNote from '../AddNote/AddNote';
@@ -17,7 +16,7 @@ interface IProps {
   cancelNote: any;
 }
 
-const App: React.FC<IProps> = ({ save, newNote, editNote, cancelNote }) => {
+const App: React.FC<IProps> = ({ save, newNote, cancelNote }) => {
   const addNoteFlag = save;
   const dispatch = useDispatch();
   const [modalDelNote, setModalDelNote] = useState(false);

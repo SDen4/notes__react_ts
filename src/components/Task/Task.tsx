@@ -42,7 +42,7 @@ const Task: React.FC<IProps> = ({
   return (
     <div className={styles.component}>
       <div className={styles.title_wrapper}>
-        {/* <input type="checkbox" /> */}
+        <input type="checkbox" />
         {editTaskFlag ? (
           <input
             type="text"
