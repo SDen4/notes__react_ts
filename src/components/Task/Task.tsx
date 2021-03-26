@@ -48,6 +48,7 @@ const Task: React.FC<IProps> = ({
             type="text"
             defaultValue={taskName}
             onChange={newTaskHandler}
+            className={styles.taskEditInput}
           />
         ) : (
           <h4>{taskName}</h4>
