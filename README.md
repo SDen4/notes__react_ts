@@ -2,6 +2,8 @@
 
 ### by Denis Skryabin
 
+Watch on [github pages](https://sden4.github.io/notes__react_ts/)
+
 ### Stack:
 
 ```sh
