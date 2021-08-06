@@ -4,7 +4,7 @@ import {
   DEL_NOTE,
   EDIT_NOTE,
   CANCEL_NOTE,
-} from './types';
+} from './constants';
 
 export function createNote(note: any) {
   return {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { newNote, editNote, cancelNote } from '../../redux/actions';
-import { DEL_NOTE } from '../../redux/types';
+import { DEL_NOTE } from '../../redux/constants';
 
 import AddNote from '../AddNote/AddNote';
 import NotesList from '../NotesList/NotesList';
