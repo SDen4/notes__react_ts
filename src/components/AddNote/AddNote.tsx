@@ -6,13 +6,13 @@ import Task from '../Task/Task';
 
 import styles from './AddNote.module.scss';
 
-interface IProps {
+type IProps = {
   createNote: any;
   editNote: any;
   cancelNote: any;
   editData?: { editId: string; editTitle: string; editTasks: any };
   editClear: any;
-}
+};
 
 const AddNote: React.FC<IProps> = ({
   createNote,

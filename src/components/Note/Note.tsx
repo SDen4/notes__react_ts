@@ -1,16 +1,18 @@
 import React from 'react';
 
+import { TaskType } from '../../redux/types';
+
 import Task from '../Task/Task';
 
 import styles from './Note.module.scss';
 
-interface IProps {
+type IProps = {
   noteTitle: string;
-  noteTasks: any[];
+  noteTasks: TaskType[];
   noteId: string;
   onRemove: (id: string) => void;
-  onEdit: (id: string, title: string, tasks: any[]) => void;
-}
+  onEdit: (id: string, title: string, tasks: TaskType[]) => void;
+};
 
 const Note: React.FC<IProps> = (props) => {
   const { noteTitle, noteTasks, noteId, onRemove, onEdit } = props;
@@ -34,9 +36,9 @@ const Note: React.FC<IProps> = (props) => {
           </button>
         </div>
       </div>
-      {noteTasks.map((item: any) => {
-        const { taskName, taskId } = item;
-        return <Task taskName={taskName} taskId={taskId} key={Math.random()} />;
+      {noteTasks.map((item: TaskType) => {
+        const { taskName, id } = item;
+        return <Task taskName={taskName} taskId={id} key={Math.random()} />;
       })}
     </div>
   );

@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { NoteType, TaskType } from '../../redux/types';
+
 import Note from '../Note/Note';
 
 import styles from './NotesList.module.scss';
 
-interface IProps {
+type IProps = {
   notes: any;
   onRemove: (id: string) => void;
-  onEdit: (id: string, title: string, tasks: any[]) => void;
-}
+  onEdit: (id: string, title: string, tasks: TaskType[]) => void;
+};
 
 const NotesList: React.FC<IProps> = ({ notes, onRemove, onEdit }) => {
   if (!notes.length) {
@@ -20,7 +22,7 @@ const NotesList: React.FC<IProps> = ({ notes, onRemove, onEdit }) => {
     );
   }
 
-  return notes.map((note: any) => {
+  return notes.map((note: NoteType) => {
     const { noteTitle, tasks, id } = note;
     return (
       <Note

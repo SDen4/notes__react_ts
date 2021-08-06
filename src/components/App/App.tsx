@@ -9,17 +9,17 @@ import DelNoteModal from '../DelNoteModal/DelNoteModal';
 
 import styles from './App.module.scss';
 
-interface IProps {
+type IProps = {
   save: boolean;
   newNote: any;
   editNote: any;
   cancelNote: any;
-}
+};
 
 const App: React.FC<IProps> = ({ save, newNote, cancelNote }) => {
   const addNoteFlag = save;
   const dispatch = useDispatch();
-  const [modalDelNote, setModalDelNote] = useState(false);
+  const [modalDelNote, setModalDelNote] = useState<boolean>(false);
   const [delId, setDelId] = useState<string>('');
   const [editDataArr, setEditDataArr] = useState({} as any);
 
