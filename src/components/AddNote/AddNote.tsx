@@ -108,20 +108,6 @@ const AddNote: React.FC<IProps> = ({
           />
         </div>
 
-        <div className={styles.subtitle}>Задачи</div>
-        {tasks.map((item: any) => {
-          const { taskName, id } = item;
-          return (
-            <Task
-              taskName={taskName}
-              taskId={id}
-              key={Math.random()}
-              deleteTask={deleteTask}
-              editTask={editTask}
-            />
-          );
-        })}
-
         <div className={styles.row}>
           <input
             type="text"
@@ -137,6 +123,23 @@ const AddNote: React.FC<IProps> = ({
             Добавить задачу
           </button>
         </div>
+
+        {tasks.length ? (
+          <div className={styles.subtitle}>Список задач:</div>
+        ) : null}
+
+        {tasks.map((item: any) => {
+          const { taskName, id } = item;
+          return (
+            <Task
+              taskName={taskName}
+              taskId={id}
+              key={Math.random()}
+              deleteTask={deleteTask}
+              editTask={editTask}
+            />
+          );
+        })}
 
         <div className={styles.button_wrapper}>
           <button type="submit" className={styles.button}>
